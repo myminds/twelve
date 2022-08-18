@@ -40,7 +40,7 @@ export const AlbumsDetails = () => {
                 return (
                   <tr>
                     <td>{obj.id}</td>
-                    <td><Link state={obj} to={"/albums/"+obj.id}>{obj.title}</Link></td>
+                    <td>{obj.title}</td>
                     <td><img src={obj.url} alt="" width={100}/></td>
                   </tr>
                 );
