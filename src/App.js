@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { Dashboard, SignIN, Signup } from "./Pages";
+import { Home, Albums, AlbumsDetails } from "./Pages";
 import { PrivateRoute, ProtectRoute } from "./Components";
 import "./assets/style.css";
 import { isLogin } from "./Components/utils";
@@ -9,26 +9,24 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/dashboard"
+            path="/"
             element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
+              <Home />
             }
           />
           <Route
-            path="/signin"
+            path="/albums/:id"
             element={
-              <SignIN />
+              <Albums />
             }
           />
           <Route
-            path="/signup"
+            path="/albums-details/:id"
             element={
-              <Signup />
+              <AlbumsDetails />
             }
           />
-          <Route path="*" element={<Navigate to="/signin" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </div>

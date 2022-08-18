@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { isLogout } from "../utils";
 
 export const Header = () => {
@@ -14,12 +14,12 @@ export const Header = () => {
   return (
     <div className="header">
       <li className="logo" onClick={() => navigate("/dashboard")}>
-        Gaurav Test
+      <Link to="/">  Gaurav Test </Link>
       </li>
       <div className="header-right">
-        <li className={active=== 1 ?"active":""}>Home</li>
+        <li className={active=== 1 ?"active":""}><Link to="/">Home</Link></li>
         <li className={active=== 2 ?"active":""}>Contact</li>
-        <li onClick={()=>onClickLogout()} className={active=== 3 ?"active":""}>Log out</li>
+        <li className={active=== 3 ?"active":""}>Log out</li>
       </div>
     </div>
   );

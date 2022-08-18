@@ -1,3 +1,3 @@
-export { Dashboard } from "./Dashboard/Dashboard";
-export { SignIN } from "./Signin/SignIn";
-export {Signup} from './Signup/Signup'
+export { Home } from "./Home/Home";
+export { Albums } from "./Albums/Albums";
+export {AlbumsDetails} from './AlbumsDetails/AlbumsDetails'
