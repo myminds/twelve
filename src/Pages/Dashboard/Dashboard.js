@@ -43,8 +43,10 @@ export const Dashboard = () => {
   const searcData = (searchs) => {
     setSearch(searchs)
     let dataArr = [...data];
-    if (search) {
-      dataArr = dataArr.filter((obj) => {
+    if (searchs) {
+      dataArr = dataArr.filter((obj) =>
+      // (obj?.name?.includes(searchs) || obj?.email?.includes(searchs) || obj?.body?.includes(searchs) || obj?.id?.includes(searchs))
+       {
         let matched = false;
         Object.keys(obj).map((key) => {
           console.log(obj[key]);
@@ -53,7 +55,8 @@ export const Dashboard = () => {
           }
         });
         return matched;
-      });
+      }
+      );
     }
     setPaginationData((prev) => ({
       ...prev,

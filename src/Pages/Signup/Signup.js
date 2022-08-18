@@ -1,47 +1,70 @@
 import { useState } from "react";
 import { Header } from "../../Components";
-import JsonData from '../../assets/LoginData.json'
+import JsonData from "../../assets/LoginData.json";
 import { Link, useNavigate } from "react-router-dom";
 const logindata = {
   name: "",
   pass: "",
+  email: "",
+  user_name: "",
 };
 
-export const SignIN = () => {
+export const Signup = () => {
   const [data, setData] = useState(logindata);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const onChangeInputs = (e) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const submit=(e)=>{
-    e.preventDefault()
+  const submit = (e) => {
+    e.preventDefault();
     let userjson = JSON.parse(localStorage.getItem("UserDetails"));
-    JsonData=userjson?userjson:[]
-     if(JsonData.find((obj)=>(obj.user_name === data.name && obj.pass === data.pass))){
-       localStorage.setItem("token",btoa(data))
-       navigate('/dashboard')
-     }
-  }
+    userjson=userjson?userjson:[]
+    userjson.push(data);
+    localStorage.setItem("UserDetails", JSON.stringify(userjson));
+    navigate('/signin')
+  };
 
   return (
     <div className="signin-form-outer">
       <div className="signin-form-inner">
         <form onSubmit={submit}>
           <div class="container">
-            <label for="uname">
-              <b>Username</b>
+            <label>
+              <b>Name</b>
             </label>
             <input
               type="text"
-              placeholder="Enter Username"
+              placeholder="Enter name"
               name="name"
               required
               onChange={onChangeInputs}
             />
 
-            <label for="psw">
+            <label>
+              <b>Username</b>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Username"
+              name="user_name"
+              required
+              onChange={onChangeInputs}
+            />
+
+            <label>
+              <b>Email</b>
+            </label>
+            <input
+              type="email"
+              placeholder="Enter email"
+              name="email"
+              required
+              onChange={onChangeInputs}
+            />
+
+            <label>
               <b>Password</b>
             </label>
             <input
@@ -51,11 +74,12 @@ export const SignIN = () => {
               required
               onChange={onChangeInputs}
             />
-            <button type="submit">Login</button>
+            <button type="submit">Sign Up</button>
           </div>
         </form>
-        <Link to='/signup' >Sign Up</Link>
+        <Link to='/signin' >Sign in</Link>
       </div>
+     
     </div>
   );
 };
